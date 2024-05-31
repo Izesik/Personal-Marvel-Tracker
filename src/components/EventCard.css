@@ -1,0 +1,110 @@
+.event-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 50, 50, 0.2); /* Semi-transparent background */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+    border-radius: 10px;
+    padding: 10px;
+    backdrop-filter: blur(10px); /* Frosted-glass effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Subtle shadow for depth */
+    transition: transform 0.2s;
+}
+.event-card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+
+.event-card img {
+    width: 50px; /* Adjust as needed */
+    height: auto;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.event-card-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-card-title {
+    font-size: 18px; /* Adjust as needed */
+    font-weight: bold;
+    color: #D8DBE2;
+    margin-bottom: 5px;
+}
+
+.event-status-purchase {
+    color: #292D38;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.6rem;
+    text-align: center;
+    width: 75px;
+}
+
+.event-status-purchase.purchased {
+    background-color: #acc3a6c1;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+}
+
+.event-status-purchase.pre-ordered {
+    background-color: #b3c2f2b2;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+}
+
+.event-status-purchase.ordered {
+    background-color: #ffdc5ead;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+}
+
+.event-status-purchase.not-purchased {
+    background-color: #292D38;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+    color: white;
+}
+
+.status-bar-event {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 98%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: small;
+    padding: 2px 0;
+    border-radius: 0 0 5px 5px;
+}
+
+.purchased-mobile {
+    background-color: #acc3a6c1;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+}
+
+.pre-ordered-mobile  {
+    background-color: #b3c2f2b2;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+}
+
+@media (max-width: 768px) {
+    .event-card {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 50, 50, 0.2); /* Semi-transparent background */
+        border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px); /* Frosted-glass effect */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Subtle shadow for depth */
+    }
+    
+    .event-card img {
+        width: 50px; /* Adjust as needed */
+        height: auto;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+}

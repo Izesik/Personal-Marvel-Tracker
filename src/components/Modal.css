@@ -1,0 +1,178 @@
+/* Modal Styling */
+.DialogOverlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px); /* Frosted-glass effect */
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .DialogContent {
+    background-color: #292d38c5;
+    border-radius: 10px 10px 0 0;
+    padding: 20px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 100%;
+    position: fixed;
+    bottom: env(safe-area-inset-bottom, 20px); /* Take into account the iPhone search bar */
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    overflow-y: auto;
+    transition: bottom 0.3s ease-in-out;
+}
+  
+  .IconButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  
+  .modal-cover-art-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    position: relative;
+    width: 100px;
+    height: 150px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .modal-cover-art {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    margin-right: 20px;
+  }
+  
+  .modal-top-section {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .modal-comic-details {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .modal-comic-card-title {
+    color:#D8DBE2;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+  }
+  .modal-comic-card-subtitle {
+    color:#a3a6ad;
+    font-size: 0.75em;
+    margin-bottom: 10px;
+  }
+
+  .page-count {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #a3a6ad;
+    font-weight: bold;
+    font-size: 0.80rem;
+  }
+
+  .issues {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #a3a6ad;
+    font-weight: bold;
+    font-size: 0.75rem;
+  }
+  
+  .star-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #a3a6ad;
+    font-weight: bold;
+  }
+  
+  .star {
+    font-size: 1em;
+    color: #ccc;
+  }
+  
+  .star.filled,
+  .star.half-filled {
+    color: #f5a623;
+  }
+  
+  .modal-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .hardcover {
+    background-color: #2B4162;
+    color: #D8DBE2;
+  }
+  
+  .paperback {
+    background-color: #B3C2F2;
+    color: #292D38;
+  }
+  
+  .modal-description {
+    font-weight: bold;
+    font-size: small;
+    margin-top: 10px;
+    color: #D8DBE2;
+  }
+  
+  .comic-card-buy-button {
+    background-color: #ffa6005f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .comic-card-buy-button:hover {
+    background-color: #e59500c6;
+  }
+
+  @media (max-width: 769px) {
+    .DialogContent {
+      background-color: #292d38c5;
+      border-radius: 10px 10px 0 0;
+      padding: 20px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 90%;
+      position: fixed;
+      bottom: env(safe-area-inset-bottom, 20px); /* Take into account the iPhone search bar */
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      overflow-y: auto;
+      transition: bottom 0.3s ease-in-out;
+  }
+ }

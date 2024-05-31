@@ -1,0 +1,105 @@
+.comic-card-mobile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+    box-shadow: none; /* Remove box-shadow */
+    border: none; /* Remove border */
+}
+
+.comic-card-mobile:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+.cover-art-container {
+    position: relative;
+    width: 100px;
+    height: 150px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.cover-art-mobile {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+}
+
+.status-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: small;
+    padding: 0px 0 0;
+    border-radius: 0 0 5px 5px;
+    transform: translateY(2px);
+    
+}
+
+.status-bar-dialog {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 98%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: small;
+    padding: 0px 0;
+    border-radius: 0 0 5px 5px;
+    transform: translateY(1px);
+}
+
+.purchased-mobile {
+    background-color: #acc3a6c1;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+    backdrop-filter: blur(1px); /* Frosted-glass effect */
+}
+
+.ordered-mobile {
+    background-color: #ffdc5ead;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+    backdrop-filter: blur(1px); /* Frosted-glass effect */
+}
+
+.pre-ordered-mobile  {
+    background-color: #b3c2f2b2;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+    backdrop-filter: blur(1px); /* Frosted-glass effect */
+}
+
+@media (max-width: 1300px) {
+    .comic-card-mobile {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.2s;
+        box-shadow: none; /* Remove box-shadow */
+        border: none; /* Remove border */
+    }
+    .cover-art-container {
+        position: relative;
+        width: 100px;
+        height: 150px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .cover-art-mobile {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+    }
+}
+

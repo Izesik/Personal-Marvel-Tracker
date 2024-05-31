@@ -1,0 +1,133 @@
+.comic-card {
+    background-color: #2C3E50;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin-bottom: 20px;
+    color: #D8DBE2;
+    transition: transform 0.3s;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .comic-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .top-section {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .cover-art-container {
+    flex: 0 0 150px; /* Fixed width for cover art */
+    display: flex;
+    justify-content: center; /* Center the cover art */
+    align-items: center;
+    margin-right: 20px; /* Space between cover art and details */
+  }
+  
+  .comic-card-cover-art {
+    width: 100%; /* Make cover art fit the container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  }
+  
+  .comic-details {
+    flex: 1; /* Allow details to take up the remaining space */
+    text-align: left; /* Align text to the left */
+  }
+  
+  .comic-card-title {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+  }
+  
+  .rating {
+    margin-bottom: 10px;
+  }
+  
+  .star-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .star {
+    font-size: 1em;
+    color: #ccc;
+    margin-right: 5px;
+  }
+  
+  .star.filled,
+  .star.half-filled {
+    color: #f5a623;
+  }
+  
+  .status {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .comic-card-description {
+    margin-top: 10px;
+    text-align: left; /* Ensure the text is justified */
+    font-weight: bold;
+    font-size:0.7rem;
+  }
+  
+  .additional-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .cost {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .purchase-status {
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .purchased .purchase-status {
+    background-color: #ACC3A6; /* Green */
+  }
+  
+  .pre-ordered .purchase-status {
+    background-color: #B3C2F2; /* Light Blue */
+  }
+  
+  .not-purchased .purchase-status {
+    background-color: #292D38;
+  }
+  
+  .event-card {
+    background-color: #E84855;
+  }
+  
+  .comic-card-buy-button {
+    background-color: #ffa6005f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .comic-card-buy-button:hover {
+    background-color: #e59500c6;
+  }
+  

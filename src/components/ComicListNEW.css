@@ -1,0 +1,116 @@
+.comic-list-mobile {
+    padding: 20px;
+}
+
+.era-section {
+    margin-bottom: 30px;
+}
+
+.era-title {
+    background-color: #f5c6c694; /* Adjust color as needed */
+    color: white; 
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+}
+
+.comic-grid {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(105px, 1fr)); /* Adjust minmax as needed */
+}
+
+.event-card {
+    grid-column: span 10; /* Make sure event cards span two columns if needed */
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.event-card-mobile img {
+    width: 50px; /* Adjust as needed */
+    height: auto;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.event-card-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-card-title {
+    font-size: 18px; /* Adjust as needed */
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.progress-bar-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.ProgressRoot {
+    position: relative;
+    overflow: hidden;
+    background: #e6e6e6;
+    border-radius: 99999px;
+    width: 100%;
+    height: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+}
+
+.ProgressIndicator {
+    background-color: #ACC3A6; /* Adjust this color as needed */
+    height: 100%;
+    transition: width 300ms ease;
+}
+
+.progress-text {
+    margin-top: 5px;
+    font-size: 0.7em;
+    font-weight: bold;
+    color: #D8DBE2;
+}
+
+/* PHONE LANDSCAPE */
+@media (max-width: 1300px) {
+    .event-card {
+        grid-column: span 7; /* Make sure event cards span two columns if needed */
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    .comic-grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(105px, 1fr)); /* Adjust minmax as needed */
+    }
+}
+
+/* PHONE PORTRAIT */
+@media (max-width: 768px) {
+    .event-card {
+        grid-column: span 3; /* Make sure event cards span two columns if needed */
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    .comic-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust minmax as needed */
+    }
+}
+
+
+
+
