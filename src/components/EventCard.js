@@ -7,7 +7,7 @@ import { renderStars, getStatusBar } from '../utils/utils';
 
 
 const EventCardDesktop = ({ comic }) => {
-    const purchaseStatusClass = comic["PURCHASE STATUS"] ? `event-status-purchase ${comic["PURCHASE STATUS"].toLowerCase().replace(' ', '-')}` : '';
+    const purchaseStatusClass = comic["PURCHASE_STATUS"] ? `event-status-purchase ${comic["PURCHASE_STATUS"].toLowerCase().replace(' ', '-')}` : '';
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1300);
     const handleResize = () => {
         setIsMobile(window.innerWidth <= 1300);
@@ -36,16 +36,16 @@ const EventCardDesktop = ({ comic }) => {
         return null;
       };
 
-    const purchaseStatus = comic["PURCHASE STATUS"];
+    const purchaseStatus = comic["PURCHASE_STATUS"];
 
     return (
         <div className="event-card" onClick={handleCardClick}>
-            <img className="event-cover-art" src={comic["COVER ART"] || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
+            <img className="event-cover-art" src={comic["COVER_ART"] || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
             <div className="event-card-details">
                 <div className="event-card-title">{comic.TITLE}</div>
-                {comic["PURCHASE STATUS"] && (
+                {comic["PURCHASE_STATUS"] && (
                     <div className={purchaseStatusClass}>
-                        {comic["PURCHASE STATUS"]}
+                        {comic["PURCHASE_STATUS"]}
                     </div>
                 )}
             </div>
@@ -60,7 +60,7 @@ const EventCardDesktop = ({ comic }) => {
                         </Dialog.Close>
                         <div className="modal-top-section">
                         <div className="modal-cover-art-container" >
-                            <img className="cover-art-mobile" src={comic["COVER ART"] || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
+                            <img className="cover-art-mobile" src={comic["COVER_ART"] || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
                             {getStatusBar(purchaseStatus)}
                         </div>
                             <div className="modal-comic-details">
@@ -76,7 +76,7 @@ const EventCardDesktop = ({ comic }) => {
                         <p className="modal-description">{comic.DESCRIPTION}</p>
                         {!isMobile && (
                             <p className="modal-description">
-                            KEY CHARACTERS: {comic["KEY CHARACTERS"].join(', ')}
+                            KEY CHARACTERS: {comic["KEY_CHARACTERS"].join(', ')}
                             </p>
                         )}
                         {comic.ISSUES !== "No issues information available" && (

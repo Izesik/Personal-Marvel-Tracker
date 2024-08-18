@@ -1,6 +1,6 @@
 
-import React from 'react';
-import comics from '../comics_all_marvel_human_readable.json';
+import React, { useState, useEffect } from 'react';
+//import comics from '../comics_all_marvel_human_readable.json';
 import './ComicListNEW.css';
 import ComicCardMobile from './ComicCardMobile';
 import EventCard from './EventCard';
@@ -9,6 +9,7 @@ import { renderStars } from '../utils/utils';
 
 
 const ComicListDesktop = () => {
+const [comics, setComics] = useState([]);
   const filteredComics = comics.filter(comic => !comic.DIVIDER); // Filter out comics with DIVIDER set to true
 
   const eras = [...new Set(filteredComics.map(comic => comic.ERA))]; // Get unique eras
@@ -31,6 +32,13 @@ const ComicListDesktop = () => {
 const ratings = comics.filter(comic => comic.RATING != null).map(comic => parseFloat(comic.RATING));
 const averageRating = ratings.length ? (ratings.reduce((total, rating) => total + rating, 0) / ratings.length).toFixed(1) : 'N/A';
 
+useEffect(() => {
+    fetch('/api/comics')
+        .then(response => response.json())
+        .then(data => setComics(data))
+        .catch(error => console.error('Error fetching comics:', error));
+}, []);
+
   return (
       <div className="comic-list-mobile">
          <div className="progress-bar-container">
@@ -40,6 +48,7 @@ const averageRating = ratings.length ? (ratings.reduce((total, rating) => total 
               <div className="progress-text">{`PURCHASED: ${purchasedComics} / ${totalComics}`}</div>
               <div className="progress-text"> TOTAL SPENT: ${totalCost.toFixed(2)} | TOTAL PAGES: {totalPages}</div>
               <div className="progress-text">AVG RATING: {renderStars(averageRating)}</div>
+              <button>Add Comic</button>
           </div>
           {eras.map((era, eraIndex) => (
               <div key={eraIndex} className="era-section">

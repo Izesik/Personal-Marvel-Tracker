@@ -28,7 +28,7 @@ const ComicCardMobile = ({ comic }) => {
     };
   }, []);
 
-  const purchaseStatus = comic["PURCHASE STATUS"];
+  const purchaseStatus = comic["PURCHASE_STATUS"];
 
   const getStatusBar = (status) => {
     if (status === "Purchased") return <div className="status-bar purchased-mobile">Purchased</div>;
@@ -52,7 +52,7 @@ const ComicCardMobile = ({ comic }) => {
   return (
     <div className="comic-card-mobile">
       <div className="cover-art-container" onClick={handleCardClick}>
-        <img className="cover-art-mobile" src={comic["COVER ART"] || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
+        <img className="cover-art-mobile" src={comic["COVER_ART"] || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
         {getStatusBar(purchaseStatus)}
       </div>
       <Dialog.Root open={isModalOpen} onOpenChange={setModalOpen}>
@@ -66,7 +66,7 @@ const ComicCardMobile = ({ comic }) => {
             </Dialog.Close>
             <div className="modal-top-section">
             <div className="modal-cover-art-container" >
-                <img className="cover-art-mobile" src={comic["COVER ART"] || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
+                <img className="cover-art-mobile" src={comic["COVER_ART"] || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
                 {getStatusBarDialog(purchaseStatus)}
             </div>
               <div className="modal-comic-details">
@@ -82,7 +82,7 @@ const ComicCardMobile = ({ comic }) => {
             <p className="modal-description">{comic.DESCRIPTION}</p>
             {!isMobile && (
                             <p className="modal-description">
-                            KEY CHARACTERS: {comic["KEY CHARACTERS"].join(', ')}
+                            KEY CHARACTERS: {comic["KEY_CHARACTERS"].join(', ')}
                             </p>
                         )}
             {comic.ISSUES !== "No issues information available" && (
