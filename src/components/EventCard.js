@@ -40,7 +40,7 @@ const EventCardDesktop = ({ comic }) => {
 
     return (
         <div className="event-card" onClick={handleCardClick}>
-            <img className="event-cover-art" src={comic["COVER_ART"] || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
+            <img className="event-cover-art"  src={`http://localhost:5000${comic["COVER_ART"]}` || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
             <div className="event-card-details">
                 <div className="event-card-title">{comic.TITLE}</div>
                 {comic["PURCHASE_STATUS"] && (
@@ -60,7 +60,7 @@ const EventCardDesktop = ({ comic }) => {
                         </Dialog.Close>
                         <div className="modal-top-section">
                         <div className="modal-cover-art-container" >
-                            <img className="cover-art-mobile" src={comic["COVER_ART"] || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
+                            <img className="cover-art-mobile"  src={`http://localhost:5000${comic["COVER_ART"]}` || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
                             {getStatusBar(purchaseStatus)}
                         </div>
                             <div className="modal-comic-details">
@@ -68,8 +68,8 @@ const EventCardDesktop = ({ comic }) => {
                                 <div className="star-rating">
                                     {comic.RATING != null ? renderStars(comic.RATING) : <span>Not Yet Rated</span>}
                                 </div>
-                                <div className={`modal-status ${comic["HARDCOVER?"] ? comic["HARDCOVER?"].toLowerCase() : ''}`}>
-                                    {comic["HARDCOVER?"]}
+                                <div className={`modal-status ${comic["HARDCOVER"] ? comic["HARDCOVER"].toLowerCase() : ''}`}>
+                                    {comic["HARDCOVER"]}
                                 </div>
                             </div>
                         </div>

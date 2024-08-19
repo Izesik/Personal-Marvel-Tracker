@@ -52,7 +52,7 @@ const ComicCardMobile = ({ comic }) => {
   return (
     <div className="comic-card-mobile">
       <div className="cover-art-container" onClick={handleCardClick}>
-        <img className="cover-art-mobile" src={comic["COVER_ART"] || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
+        <img className="cover-art-mobile" src={`http://localhost:5000${comic["COVER_ART"]}` || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
         {getStatusBar(purchaseStatus)}
       </div>
       <Dialog.Root open={isModalOpen} onOpenChange={setModalOpen}>
@@ -66,7 +66,7 @@ const ComicCardMobile = ({ comic }) => {
             </Dialog.Close>
             <div className="modal-top-section">
             <div className="modal-cover-art-container" >
-                <img className="cover-art-mobile" src={comic["COVER_ART"] || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
+                <img className="cover-art-mobile"  src={`http://localhost:5000${comic["COVER_ART"]}` || "/images/defaultcover.webp"} alt={`${comic.TITLE} cover art`} loading='lazy' />
                 {getStatusBarDialog(purchaseStatus)}
             </div>
               <div className="modal-comic-details">
@@ -74,8 +74,8 @@ const ComicCardMobile = ({ comic }) => {
                 <div className="star-rating">
                   {comic.RATING != null ? renderStars(comic.RATING) : <span>Not Yet Rated</span>}
                 </div>
-                <div className={`modal-status ${getHardcoverClass(comic["HARDCOVER?"])}`}>
-                  {comic["HARDCOVER?"]}
+                <div className={`modal-status ${getHardcoverClass(comic["HARDCOVER"])}`}>
+                  {comic["HARDCOVER"]}
                 </div>
               </div>
             </div>

@@ -1,0 +1,44 @@
+.add-comic-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #D8DBE2;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    color:rgb(255, 255, 255);
+    background-color: #636363;
+    padding: 0.5rem;
+    border: 1px solid #a9cdf6;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.add-comic-form button {
+    align-self: flex-start;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-comic-form button:hover {
+    background-color: #0056b3;
+}

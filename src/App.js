@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import './App.css';
-import ComicList from './components/TABLE/ComicList';
 import ComicListDesktop from './components/ComicListDesktop';
+import AddComic from './components/AddComic';
 
 
 function App() {
