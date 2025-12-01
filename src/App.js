@@ -1,15 +1,18 @@
-import './App.css';
-import ComicListDesktop from './components/ComicListDesktop';
-import AddComic from './components/AddComic';
-
+import "./App.css";
+import ComicListDesktop from "./components/ComicListDesktop";
+import AddComic from "./components/AddComic";
+import AppHeader from "./components/AppHeader/AppHeader";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Isaac's Marvel Collection</h1>
-      </header>
-      <ComicListDesktop/>
+      <AppHeader title="Marvel Trackr" />
+      <ComicListDesktop />
+
+      {/* 📌 Footer */}
+      <footer className="App-footer">
+        <p>Built on React. A Personal Marvel Comic Tracker.</p>
+      </footer>
     </div>
   );
 }

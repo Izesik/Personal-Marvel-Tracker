@@ -1,18 +1,22 @@
 .event-card {
     display: flex;
     align-items: center;
-    background: rgba(255, 50, 50, 0.2); /* Semi-transparent background */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+    background: #161B22; /* Smooth gradient */
+    background-size: 200% 200%; /* Trick to allow smooth transition */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Frosted effect */
     border-radius: 10px;
-    padding: 10px;
+    padding: 12px;
     backdrop-filter: blur(10px); /* Frosted-glass effect */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Subtle shadow for depth */
-    transition: transform 0.2s;
+    transition: transform 0.2s ease-in-out;
+    grid-column: span 10 !important;
 }
+
+/* Optional: Slight hover effect to make it more dynamic */
 .event-card:hover {
-    transform: scale(1.05);
-    cursor: pointer;
+    transform: scale(1.03); /* Slight zoom on hover */
 }
+
 
 
 .event-card img {
@@ -92,7 +96,7 @@
     .event-card {
         display: flex;
         align-items: center;
-        background: rgba(255, 50, 50, 0.2); /* Semi-transparent background */
+        background: #161B22; /* Semi-transparent background */ 
         border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
         border-radius: 10px;
         padding: 10px;
@@ -106,5 +110,9 @@
         height: auto;
         border-radius: 5px;
         margin-right: 10px;
+    }
+    .event-card-title {
+        font-size: 16px; /* Adjust as needed */
+
     }
 }

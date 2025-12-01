@@ -1,5 +1,7 @@
 .comic-list-mobile {
     padding: 20px;
+    padding-left: 30px;
+  
 }
 
 .era-section {
@@ -7,14 +9,59 @@
 }
 
 .era-title {
-    background-color: #f5c6c694; /* Adjust color as needed */
+    background: #1E2A44; /* Modern gradient */
     color: white; 
     font-weight: bold;
-    padding: 10px;
-    border-radius: 5px;
+    font-size: 1.1em;
+    padding: 15px;
+    border-radius: 8px;
     margin-bottom: 15px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.era-stats {
+    display: flex;
+    justify-content: space-around; /* Better spacing */
+    font-size: 0.75em;
+    align-items: center;
+    color: #dfdee0;
+    width: 90%;
+    margin-top: 5px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.era-stats div {
+    padding: 5px 10px;
+}
+
+.era-title .era-stats div:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Subtle divider */
+}
+
+.era-title .era-stats div {
+    flex: 1; /* Equal spacing */
+    text-align: center;
+}
+
+/* Star Ratings Enhancement */
+.era-title .era-stats .rating {
+    align-items: center;
+    gap: 4px;
+}
+
+.era-title .era-stats .rating svg {
+    font-size: 14px;
+    color: #ffcc00; /* Gold stars */
+    transition: transform 0.2s;
+}
+
+.era-title .era-stats .rating svg:hover {
+    transform: scale(1.1);
+    color: #ffd700; /* Brighter on hover */
 }
 
 .comic-grid {
@@ -23,7 +70,7 @@
 }
 
 .event-card {
-    grid-column: span 10; /* Make sure event cards span two columns if needed */
+    grid-column: span 10 !important; /* Make sure event cards span two columns if needed */
     display: flex;
     align-items: center;
     border-radius: 10px;
@@ -36,6 +83,15 @@
     height: auto;
     border-radius: 5px;
     margin-right: 10px;
+}
+
+.comic-card-wrapper {
+    transition: transform 0.2s ease-in-out;
+}
+
+.comic-card-wrapper.dragging {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.5);
 }
 
 .event-card-details {
@@ -62,7 +118,7 @@
     border-radius: 99999px;
     width: 100%;
     height: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 5px #ffffff22, 0 0 5px #2ecc7144;
     border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
 }
 
@@ -79,6 +135,135 @@
     color: #D8DBE2;
 }
 
+/* Floating add comic button */
+.add-comic-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    background-color: #D8DBE2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.add-comic-button:hover {
+    background-color: #acc3a6c1;
+    transform: scale(1.1);
+}
+
+.edit-mode-button {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    background-color: #D8DBE2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 2em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.edit-mode-button:hover {
+    background-color: #acc3a6c1;
+    transform: scale(1.1);
+}
+
+.edit-mode-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ffdc5ead; /* Bright color to indicate edit mode */
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 0;
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+}
+
+/* Comic List Container - Ensure Proper Layout */
+.comic-list-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center; /* Keeps everything centered */
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 📌 Ensures ToC Stays Fixed Next to Comics */
+.toc-container {
+    position: fixed;  /* Keeps it in place */
+    top: 120px;  /* Adjust for spacing */
+    left: 150px;  /* Keeps it near comics */
+    width: 300px;
+    z-index: 100;  /* Keeps it above other content */
+    background-color: #292D38;
+}
+
+/* 📌 Adjust ToC Alignment */
+.toc {
+    text-align: right;
+    color: white;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+/* ToC Items */
+.toc-item {
+    padding: 5px 0;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    font-size: 0.75rem;
+    transition: font-size 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover Effect */
+.toc-item:hover {
+    color: #ffa600;
+    transform: scale(1.05);
+}
+
+/* Highlight Active Era */
+.toc-item.active {
+    color: #ffa600;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* 📌 Row Dots */
+.era-rows {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 3px;
+    padding-left: 5px;
+}
+
+
+
 /* PHONE LANDSCAPE */
 @media (max-width: 1300px) {
     .event-card {
@@ -87,11 +272,18 @@
         align-items: center;
         border-radius: 10px;
         padding: 10px;
-        margin-bottom: 15px;
+        
     }
     .comic-grid {
         display: grid;
         grid-template-columns: repeat(7, minmax(105px, 1fr)); /* Adjust minmax as needed */
+    }
+    .toc {
+        display: none;
+    }
+
+    .comic-list-mobile {
+        padding-left: 0;
     }
 }
 
@@ -108,6 +300,15 @@
     .comic-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust minmax as needed */
+    }
+    .add-comic-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+    }
+
+    .era-stats {
+        display: none; /* Hides stats on smaller screens */
     }
 }
 
