@@ -104,7 +104,7 @@ const ComicCardMobile = ({
         <img
           className="cover-art-mobile"
           src={
-            `http://192.168.1.21:5000${comic["COVER_ART"]}` ||
+            `http://localhost:5000${comic["COVER_ART"]}` ||
             "/images/defaultcover.webp"
           }
           alt={`${comic.TITLE} cover art`}
