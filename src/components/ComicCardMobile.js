@@ -9,6 +9,8 @@ import AddComic from "./AddComic";
 const ComicCardMobile = ({
   comic,
   updateComic,
+  isOwner,
+  token,
   onComicSaved,
   onComicDeleted,
 }) => {
@@ -48,6 +50,7 @@ const ComicCardMobile = ({
 
     const response = await fetch(`/api/comics/${comicId}`, {
       method: "DELETE",
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
     });
 
     if (response.ok) {
@@ -126,14 +129,14 @@ const ComicCardMobile = ({
               </button>
             </Dialog.Close>
 
-            {/* Edit Button */}
-            {!isEditing && (
+            {/* Edit Button — only visible to owner */}
+            {isOwner && !isEditing && (
               <button className="edit-icon" onClick={handleEditClick}>
                 <GearIcon />
               </button>
             )}
 
-            {isEditing ? (
+            {isOwner && isEditing ? (
               <>
                 {/* Trash Can Button (Only when editing an existing comic) */}
                 {comic && (
@@ -153,6 +156,7 @@ const ComicCardMobile = ({
                   updateComic={updateComic}
                   onComicSaved={onComicSaved}
                   onComicDeleted={onComicDeleted}
+                  token={token}
                 />
               </>
             ) : (

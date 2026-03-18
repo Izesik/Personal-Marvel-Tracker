@@ -27,7 +27,7 @@ import { renderStars } from "../utils/utils";
 import EraTitle from "./EraHeader/EraTitle";
 import ProgressHeader from "./ProgressHeader/ProgressHeader";
 
-const ComicListDesktop = () => {
+const ComicListDesktop = ({ isOwner = false, token = null }) => {
   const [comics, setComics] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const filteredComics = comics.filter((comic) => !comic.DIVIDER); // Filter out comics with DIVIDER set to true
@@ -125,20 +125,21 @@ const ComicListDesktop = () => {
       }));
 
       // Step 4: Send the new order to the backend
-      updateComicOrderOnServer(comicsWithUpdatedOrder);
+      updateComicOrderOnServer(comicsWithUpdatedOrder, token);
 
       return comicsWithUpdatedOrder;
     });
   };
 
   // Function to update comic order on the backend
-  const updateComicOrderOnServer = async (updatedComics) => {
+  const updateComicOrderOnServer = async (updatedComics, authToken) => {
     try {
-      console.log("Sending updated order to backend:", updatedComics); // Debugging
-
       const response = await fetch("/api/comics/reorder", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(authToken && { Authorization: `Bearer ${authToken}` }),
+        },
         body: JSON.stringify({ comics: updatedComics }),
       });
 
@@ -179,10 +180,10 @@ const ComicListDesktop = () => {
   return (
     <div className="comic-list-container">
       <div className="comic-list-mobile">
-        {/* 🔹 Edit Mode Banner */}
+        {/* Edit Mode Banner */}
         {isEditMode && (
           <div className="edit-mode-banner">
-            <p>🛠 You are in Edit Mode - Drag to reorder comics 🛠</p>
+            <p>Edit mode is on. Drag comics to reorder.</p>
           </div>
         )}
         <ProgressHeader
@@ -192,33 +193,41 @@ const ComicListDesktop = () => {
           totalPages={totalPages}
           averageRating={averageRating}
         />
-        {/* Edit Mode Toggle Button */}
-        <button
-          className="edit-mode-button"
-          onClick={() => setIsEditMode(!isEditMode)}
-        >
-          {isEditMode ? "🛠" : "🛠"}
-        </button>
+        {isOwner && (
+          <div className="comic-actions">
+            <button
+              className={`edit-mode-button ${isEditMode ? "active" : ""}`}
+              onClick={() => setIsEditMode(!isEditMode)}
+              aria-pressed={isEditMode}
+              type="button"
+            >
+              {isEditMode ? "Done" : "Edit Order"}
+            </button>
 
-        <Dialog.Root open={isModalOpen} onOpenChange={setIsModalOpen}>
-          <Dialog.Trigger asChild>
-            <button className="add-comic-button">+</button>
-          </Dialog.Trigger>
-          <Dialog.Portal>
-            <Dialog.Overlay className="DialogOverlay" />
-            <Dialog.Content className="DialogContent">
-              <Dialog.Close asChild>
-                <button className="IconButton" aria-label="Close">
-                  ✕
+            <Dialog.Root open={isModalOpen} onOpenChange={setIsModalOpen}>
+              <Dialog.Trigger asChild>
+                <button className="add-comic-button" type="button">
+                  Add Comic
                 </button>
-              </Dialog.Close>
-              <AddComic
-                onClose={() => setIsModalOpen(false)}
-                onComicSaved={handleComicSaved}
-              />
-            </Dialog.Content>
-          </Dialog.Portal>
-        </Dialog.Root>
+              </Dialog.Trigger>
+              <Dialog.Portal>
+                <Dialog.Overlay className="DialogOverlay" />
+                <Dialog.Content className="DialogContent">
+                  <Dialog.Close asChild>
+                    <button className="IconButton" aria-label="Close">
+                      X
+                    </button>
+                  </Dialog.Close>
+                  <AddComic
+                    onClose={() => setIsModalOpen(false)}
+                    onComicSaved={handleComicSaved}
+                    token={token}
+                  />
+                </Dialog.Content>
+              </Dialog.Portal>
+            </Dialog.Root>
+          </div>
+        )}
 
         <DndContext
           sensors={sensors}
@@ -247,6 +256,8 @@ const ComicListDesktop = () => {
                         key={comic._id}
                         comic={comic}
                         isEditMode={isEditMode}
+                        isOwner={isOwner}
+                        token={token}
                         handleComicDeleted={handleComicDeleted}
                         handleComicSaved={handleComicSaved}
                       />
@@ -264,6 +275,8 @@ const ComicListDesktop = () => {
 const SortableComic = ({
   comic,
   isEditMode,
+  isOwner,
+  token,
   handleComicSaved,
   handleComicDeleted,
 }) => {
@@ -306,12 +319,16 @@ const SortableComic = ({
       {comic.EVENT ? (
         <EventCard
           comic={comic}
+          isOwner={isOwner}
+          token={token}
           onComicSaved={handleComicSaved}
           onComicDeleted={handleComicDeleted}
         />
       ) : (
         <ComicCardMobile
           comic={comic}
+          isOwner={isOwner}
+          token={token}
           onComicSaved={handleComicSaved}
           onComicDeleted={handleComicDeleted}
         />
@@ -321,3 +338,4 @@ const SortableComic = ({
 };
 
 export default ComicListDesktop;
+

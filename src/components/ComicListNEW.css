@@ -135,73 +135,78 @@
     color: #D8DBE2;
 }
 
-/* Floating add comic button */
-.add-comic-button {
+/* Comic action buttons */
+.comic-actions {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 55px;
-    height: 55px;
-    background-color: #D8DBE2;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 2em;
-    font-weight: bold;
+    right: 24px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    margin: 0;
+    z-index: 900;
+}
+
+.add-comic-button {
+    padding: 10px 16px;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: 1px solid #1d4ed8;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .add-comic-button:hover {
-    background-color: #acc3a6c1;
-    transform: scale(1.1);
+    background-color: #1d4ed8;
+    border-color: #1e40af;
 }
 
 .edit-mode-button {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    width: 55px;
-    height: 55px;
-    background-color: #D8DBE2;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 2em;
-    font-weight: bold;
-    display: flex;
+    padding: 10px 16px;
+    background-color: #2b3648;
+    color: #f8fafc;
+    border: 1px solid #3b4252;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .edit-mode-button:hover {
-    background-color: #acc3a6c1;
-    transform: scale(1.1);
+    background-color: #3b4252;
+    border-color: #4b5563;
+}
+
+.edit-mode-button.active {
+    background-color: #f59e0b;
+    border-color: #d97706;
+    color: #1f2937;
 }
 
 .edit-mode-banner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #ffdc5ead; /* Bright color to indicate edit mode */
-    color: white;
+    background: #f59e0b;
+    color: #1f2937;
     text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 10px 0;
-    z-index: 1000;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(2px);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #d97706;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 16px;
 }
 
 /* Comic List Container - Ensure Proper Layout */
@@ -211,7 +216,7 @@
     justify-content: center; /* Keeps everything centered */
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 20px 140px;
 }
 
 /* 📌 Ensures ToC Stays Fixed Next to Comics */
@@ -301,10 +306,17 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust minmax as needed */
     }
-    .add-comic-button {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5em;
+    .comic-actions {
+        right: 16px;
+        left: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .add-comic-button,
+    .edit-mode-button {
+        width: 100%;
     }
 
     .era-stats {

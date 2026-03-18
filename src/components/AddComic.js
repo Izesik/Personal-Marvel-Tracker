@@ -3,7 +3,7 @@ import './AddComic.css';
 import { renderStars } from '../utils/utils';
 
 
-const AddComic = ({ onClose, onComicSaved, onComicDeleted, comic = null }) => {
+const AddComic = ({ onClose, onComicSaved, onComicDeleted, comic = null, token = null }) => {
     const [title, setTitle] = useState(comic ? comic.TITLE : 'New Comic Title');
     const [year, setYear] = useState(comic ? comic.YEAR : '');
     const [hardcover, setHardcover] = useState(comic ? comic.HARDCOVER === 'Hardcover' : false);
@@ -124,6 +124,7 @@ const AddComic = ({ onClose, onComicSaved, onComicDeleted, comic = null }) => {
     
         const response = await fetch('/api/comics/upload', {
             method: 'POST',
+            headers: token ? { Authorization: `Bearer ${token}` } : {},
             body: formData
         });
     
@@ -175,7 +176,10 @@ const AddComic = ({ onClose, onComicSaved, onComicDeleted, comic = null }) => {
 
         const response = await fetch(`/api/comics${comic?._id ? `/${comic._id}` : ''}`, {
             method: comic ? 'PUT' : 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                ...(token && { Authorization: `Bearer ${token}` }),
+            },
             body: JSON.stringify(comicData),
         });
     

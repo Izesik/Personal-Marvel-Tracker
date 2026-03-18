@@ -6,7 +6,7 @@ import './Modal.css';
 import { renderStars, getStatusBar } from '../utils/utils';
 import AddComic from './AddComic';
 
-const EventCardDesktop = ({ comic, updateComic, onComicSaved, onComicDeleted }) => {
+const EventCardDesktop = ({ comic, updateComic, isOwner, token, onComicSaved, onComicDeleted }) => {
     const purchaseStatusClass = comic["PURCHASE_STATUS"] ? `event-status-purchase ${comic["PURCHASE_STATUS"].toLowerCase().replace(' ', '-')}` : '';
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1300);
     const [isModalOpen, setModalOpen] = useState(false);
@@ -40,7 +40,10 @@ const EventCardDesktop = ({ comic, updateComic, onComicSaved, onComicDeleted }) 
         const isConfirmed = window.confirm("Are you sure you want to delete this comic?");
         if (!isConfirmed) return;
     
-        const response = await fetch(`/api/comics/${comicId}`, { method: 'DELETE' });
+        const response = await fetch(`/api/comics/${comicId}`, {
+            method: 'DELETE',
+            headers: token ? { Authorization: `Bearer ${token}` } : {},
+        });
     
         if (response.ok) {
             onComicDeleted(comicId); // ✅ Remove the comic from the UI
@@ -73,14 +76,14 @@ const EventCardDesktop = ({ comic, updateComic, onComicSaved, onComicDeleted }) 
                             </button>
                         </Dialog.Close>
 
-                        {/* Edit Button */}
-                        {!isEditing && (
+                        {/* Edit Button — only visible to owner */}
+                        {isOwner && !isEditing && (
                             <button className="edit-icon" onClick={handleEditClick}>
                                 <GearIcon />
                             </button>
                         )}
 
-                        {isEditing ? (
+                        {isOwner && isEditing ? (
                            <>
                            {/* Trash Can Button (Only when editing an existing comic) */}
                            {comic && (
@@ -88,14 +91,15 @@ const EventCardDesktop = ({ comic, updateComic, onComicSaved, onComicDeleted }) 
                                <TrashIcon />
                              </button>
                            )}
-                       
+
                            {/* AddComic Component */}
-                           <AddComic 
-                             comic={comic} 
-                             onClose={handleCloseModal} 
-                             updateComic={updateComic} 
-                             onComicSaved={onComicSaved} 
-                             onComicDeleted={onComicDeleted} 
+                           <AddComic
+                             comic={comic}
+                             onClose={handleCloseModal}
+                             updateComic={updateComic}
+                             onComicSaved={onComicSaved}
+                             onComicDeleted={onComicDeleted}
+                             token={token}
                            />
                          </>
                         ) : (
