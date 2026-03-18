@@ -1,627 +1,641 @@
-/* ==========================
-   📌 General Modal Styling
-============================= */
-
-
-/* ==========================
-   📌 Comic Cover & Details
-============================= */
+/* ===== Top section: cover + details ===== */
 .comic-modal-top-section {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
+/* Cover art upload */
 .comic-cover-art-container {
-    display: relative;
-    justify-content: center;
-    align-items: center;
-    margin-right: 5px;
-    position: relative;
-    width: 100px;
-    height: 150px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+  position: relative;
+  width: 90px;
+  height: 135px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.comic-cover-art-container label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.comic-cover-art-container label::after {
+  content: "Change";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  color: #f1f5f9;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.comic-cover-art-container label:hover::after {
+  opacity: 1;
 }
 
 .comic-cover-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Fills container without stretching */
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance the frosted effect */
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-/* ==========================
-   📌 Title & Year Styling
-============================= */
+/* Details panel (right of cover) */
 .comic-modal-details {
-    flex: 1;
-    text-align: left;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
+/* ===== Title & year ===== */
 .comic-title-input {
-    background: none;
-    border: none;
-    font-size: 1.3em;
-    font-weight: bold;
-    color: #D8DBE2;
-    outline: none;
-    width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  outline: none;
+  width: 100%;
+  padding: 2px 0 6px;
+  transition: border-color 0.2s;
+}
+
+.comic-title-input:focus {
+  border-bottom-color: rgba(96, 165, 250, 0.5);
 }
 
 .comic-year-input {
-    background: none;
-    border: none;
-    font-size: 0.85em;
-    color: #a3a6ad;
-    outline: none;
-    width: 50%;
-    font-weight: bold;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 0.8rem;
+  color: #94a3b8;
+  outline: none;
+  width: 80px;
+  padding: 2px 0 4px;
+  transition: border-color 0.2s;
 }
 
-/* ==========================
-   📌 Hardcover / Purchase Status
-============================= */
+.comic-year-input:focus {
+  border-bottom-color: rgba(96, 165, 250, 0.4);
+}
+
+/* ===== Star rating (edit mode) ===== */
+.comic-rating-container {
+  margin-top: 2px;
+}
+
+.star-rating-input {
+  display: flex;
+  gap: 3px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.star {
+  color: rgba(255, 255, 255, 0.2);
+  transition: color 0.15s;
+}
+
+.star.filled,
+.star.half-filled {
+  color: #fbbf24;
+}
+
+/* ===== Status pills ===== */
 .comic-status-container {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
 }
 
-/* Status Buttons */
-.comic-status, .comic-purchase-status {
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 14px;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    width: 50%;
+.comic-status,
+.comic-purchase-status {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  border: 1px solid transparent;
+  flex: 1;
+  letter-spacing: 0.3px;
 }
 
-/* Hardcover / Paperback */
 .hardcover {
-    background-color: #2B4162;
-    color: white;
+  background: rgba(37, 99, 235, 0.18);
+  border-color: rgba(37, 99, 235, 0.4);
+  color: #93c5fd;
+}
+
+.hardcover:hover {
+  background: rgba(37, 99, 235, 0.28);
 }
 
 .paperback {
-    background-color: #B3C2F2;
-    color: black;
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #cbd5e1;
 }
 
-/* Purchase Status Colors */
+.paperback:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .not-purchased {
-    background-color: #292D38;
-    color: white;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
 }
 
 .ordered {
-    background-color: #ffdc5ead;
-    color: black;
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
 }
 
 .pre-ordered {
-    background-color: #b3c2f2b2;
-    color: black;
+  background: rgba(139, 92, 246, 0.14);
+  border-color: rgba(139, 92, 246, 0.35);
+  color: #c4b5fd;
 }
 
 .purchased {
-    background-color: #acc3a6c1;
-    color: white;
+  background: rgba(16, 185, 129, 0.14);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #6ee7b7;
 }
 
-/* ==========================
-   📌 Dropdown Sections (Purchase Status & Era)
-============================= */
-.comic-dropdown-section {
-    margin-top: 15px;
+/* ===== Description ===== */
+.comic-description-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #e2e8f0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 76px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  margin-top: 0;
 }
 
-.comic-dropdown-label {
-    font-weight: bold;
-    font-size: 1em;
-    display: block;
-    color: white;
-    margin-bottom: 5px;
+.comic-description-input:focus {
+  border-color: rgba(96, 165, 250, 0.5);
+  background: rgba(255, 255, 255, 0.06);
 }
 
-.comic-dropdown {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #1E1E2E;
-    color: white;
-    font-size: 1em;
-    outline: none;
-    cursor: pointer;
-}
-
-/* ==========================
-   📌 Era Section with Add New Option
-============================= */
-/* Wraps both Key Characters and Era in a row */
-/* Ensures Key Characters & Era are on the same row */
-.comic-key-era-container {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-/* Era dropdown and button aligned horizontally */
-.comic-era-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
+/* ===== Section labels ===== */
 .comic-label {
-    font-weight: bold;
-    font-size: 1em;
-    display: block;
-    color: white;
-    margin-bottom: 5px;
+  display: block;
+  font-size: 0.67rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
 }
 
-/* Ensures both elements take equal width */
+/* ===== Key characters + Era row ===== */
+.comic-key-era-container {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
 .comic-key-characters,
 .comic-era-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Key Characters input consistent with other inputs */
-.comic-key-input {
-    width: 100%;
-    font-size: 0.75em;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #555;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #D8DBE2;
-    outline: none;
-    transition: border-color 0.2s;
-}
-
-.comic-key-input:focus {
-    border-color: #ffa600;
-}
-
-/* Key character tags */
+/* Character tags */
 .key-character-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    max-height: 120px; /* Adjust height as needed */
-    overflow-y: auto; /* Enables scrolling when overflowing */
-    padding: 5px;
-    border-radius: 5px;
-    background: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-height: 100px;
+  overflow-y: auto;
+  padding: 4px 0;
 }
 
 .key-character-tag {
-    background-color: #b3c2f2b2;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    font-size: 0.85em;
-   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(96, 165, 250, 0.1);
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  color: #93c5fd;
+  padding: 3px 8px 3px 10px;
+  border-radius: 999px;
+  font-size: 0.73rem;
+  font-weight: 500;
 }
 
 .key-character-tag button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1em;
-    margin-left: 5px;
-    cursor: pointer;
+  background: none;
+  border: none;
+  color: #60a5fa;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.6;
+  transition: opacity 0.15s;
 }
 
-
-/* Era Dropdown Styling */
-.comic-dropdown {
-    flex-grow: 1;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #555;
-    background-color: rgba(255, 255, 255, 0.1); /* Matches container background */
-    color: #D8DBE2;
-    outline: none;
-    transition: border-color 0.2s, background-color 0.2s;
-    appearance: none; /* Hides default browser dropdown arrow */
-    cursor: pointer;
-    font-size: 0.75em;
+.key-character-tag button:hover {
+  opacity: 1;
 }
 
-/* Hover & Focus states for dropdown */
-.comic-dropdown:hover,
-.comic-dropdown:focus {
-    border-color: #ffa600;
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
-/* Dropdown options */
-.comic-dropdown option {
-    background-color: #292d38;
-    color: #D8DBE2;
-    font-size: 0.75em;
-}
-
-
-/* + Button aligned next to dropdown */
-.comic-era-add-button {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #D8DBE2;
-    border: 1px solid #555;
-    border-radius: 5px;
-    padding: 3px 7px;
-    cursor: pointer;
-    font-size: 1.2em;
-    transition: background-color 0.2s, color 0.2s;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.comic-era-add-button:hover {
-    background-color: #e59500c6;
-    color: white;
-}
-
-/* New Era input */
-.comic-new-era {
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-}
-
-.comic-era-input {
-    width: calc(100% - 40px);
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #555;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #D8DBE2;
-    outline: none;
-    transition: border-color 0.2s;
-}
-
-.comic-era-input:focus {
-    border-color: #ffa600;
-}
-
-/* New Era save button */
-.comic-era-save-button {
-    background-color: #ffa600;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 6px 12px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.comic-era-save-button:hover {
-    background-color: #e59500;
-}
-
-/* Row container for Pages & Cost inputs */
-.comic-input-row {
-    display: flex;
-    gap: 25px;
-    width: 100%;
-}
-
-.comic-modal-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
-}
-
-.icon-button {
-    background: none;
-    border: none;
-    color: #D8DBE2;
-    font-size: 1.4em;
-    cursor: pointer;
-    transition: color 0.2s ease-in-out;
-}
-
-.icon-button:hover {
-    color: #FF5555; /* Red highlight on hover */
-}
-
-.delete-button {
-    color: #FF5555; /* Red color for delete */
-}
-
-.delete-button:hover {
-    color: #FF2222; /* Darker red on hover */
-}
-
-
-
-/* ==========================
-   📌 Description Field
-============================= */
-.comic-description-input {
-    font-size: 1em;
-    outline: none;
-    width: 98%;
-    margin-top: 10px;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #555;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #D8DBE2;
-}
-
-/* Star rating container */
-.comic-rating-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 2px;
-}
-
-/* Label styling */
-.comic-rating-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-/* Star rating display */
-.star-rating-input {
-    display: flex;
-    gap: 5px;
-    font-size: 1em;
-    cursor: pointer;
-}
-
-/* Default empty stars */
-.star {
-    color: rgba(255, 255, 255, 0.3);
-    transition: color 0.2s;
-}
-
-/* Filled stars */
-.star.filled {
-    color: #ffd700;
-}
-
-/* Half-filled stars */
-.star.half-filled {
-    color: #ffd700;
-    position: relative;
-}
-
-.star.half-filled::after {
-    content: '★';
-    position: absolute;
-    left: 0;
-    width: 50%;
-    overflow: hidden;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-
-/* ==========================
-   📌 Issues & Amazon Link
-============================= */
-/* Issues input consistent with other fields */
-.comic-input-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-}
-
-.comic-input {
-    width: 98%;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #555;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #D8DBE2;
-    outline: none;
-    transition: border-color 0.2s;
-    margin-bottom: 5px;
-}
-
-.comic-input::placeholder {
-    color: #a3a6ad;
-}
-
-.comic-input:focus {
-    border-color: #ffa600;
-}
-
-/* Ensures dropdown appears directly below the input */
+/* Character autocomplete input */
 .input-dropdown-container {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
 }
 
-/* Dropdown styling */
+.comic-key-input {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0.82rem;
+  padding: 8px 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.comic-key-input:focus {
+  border-color: rgba(96, 165, 250, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.comic-key-input::placeholder {
+  color: #475569;
+}
+
+/* Suggestions dropdown */
 .suggestions-dropdown {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%; /* Positions it directly below the input */
-    background-color: rgba(0, 0, 0, 0.9);
-    border-radius: 5px;
-    border: 1px solid #555;
-    width: 100%;
-    max-height: 120px; /* Smaller dropdown */
-    overflow-y: auto;
-    list-style: none;
-    padding: 5px;
-    margin-top: 4px;
-    z-index: 1000;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  background: #1e2535;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  max-height: 140px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 4px;
+  margin: 0;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-/* Moves dropdown above if at bottom of modal */
-.input-dropdown-container.bottom-position .suggestions-dropdown {
-    top: auto;
-    bottom: 100%;
-    margin-top: 0;
-    margin-bottom: 4px;
-}
-
-/* Smaller list items */
 .suggestions-dropdown li {
-    padding: 6px;
-    font-size: 0.85em;
-    color: #D8DBE2;
-    cursor: pointer;
-    transition: background-color 0.2s;
+  padding: 7px 10px;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.15s;
 }
 
 .suggestions-dropdown li:hover {
-    background-color: #ffa600;
-    color: white;
+  background: rgba(96, 165, 250, 0.15);
+  color: #f1f5f9;
 }
 
-
-/* ==========================
-   📌 Save Button
-============================= */
-.comic-save-button {
-    background-color: #ffa6005f;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s;
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    width: 100%;
+/* Era dropdown */
+.comic-era-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.comic-save-button:hover {
-    background-color: #e59500c6;
+.comic-dropdown {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  outline: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  appearance: none;
+  transition: border-color 0.2s, background 0.2s;
 }
 
-/* Event toggle container */
+.comic-dropdown:hover,
+.comic-dropdown:focus {
+  border-color: rgba(96, 165, 250, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.comic-dropdown option {
+  background: #1e2535;
+  color: #e2e8f0;
+}
+
+.comic-era-add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.05);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.comic-era-add-button:hover {
+  background: rgba(96, 165, 250, 0.12);
+  border-color: rgba(96, 165, 250, 0.3);
+  color: #93c5fd;
+}
+
+.comic-new-era {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.comic-era-input {
+  flex: 1;
+  padding: 7px 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  outline: none;
+  font-size: 0.82rem;
+  transition: border-color 0.2s;
+}
+
+.comic-era-input:focus {
+  border-color: rgba(96, 165, 250, 0.5);
+}
+
+.comic-era-save-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #6ee7b7;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.comic-era-save-button:hover {
+  background: rgba(16, 185, 129, 0.28);
+}
+
+/* ===== Issues & Link inputs ===== */
+.comic-input-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
+
+.comic-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  font-size: 0.82rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.comic-input:focus {
+  border-color: rgba(96, 165, 250, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.comic-input::placeholder {
+  color: #475569;
+  font-size: 0.78rem;
+}
+
+/* ===== Pages / Cost / Event row ===== */
+.comic-input-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.comic-input-row .comic-input-container {
+  flex: 1;
+  margin-top: 0;
+}
+
+/* Event toggle */
 .comic-event-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-left: auto;
-    margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  margin-left: 0;
+  margin-top: 0;
 }
 
-/* Label styling */
 .comic-event-label {
-    font-weight: bold;
-    color: #D8DBE2;
+  font-size: 0.67rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
 }
 
-/* Toggle Switch */
 .toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
 }
 
 .toggle-checkbox {
-    display: none;
+  display: none;
 }
 
 .toggle-label {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    position: relative;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s;
 }
 
 .toggle-label::after {
-    content: "";
-    width: 16px;
-    height: 16px;
-    background-color: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    transition: all 0.3s ease-in-out;
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: #94a3b8;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: left 0.25s, background 0.25s;
 }
 
-/* Active State */
 .toggle-checkbox:checked + .toggle-label {
-    background-color: #5a78c8;
+  background: #2563eb;
+  border-color: #1d4ed8;
 }
 
 .toggle-checkbox:checked + .toggle-label::after {
-    left: 22px;
+  left: 20px;
+  background: #ffffff;
 }
 
+/* ===== Save button ===== */
+.comic-save-button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 11px 20px;
+  background: #2563eb;
+  border: 1px solid #1d4ed8;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  text-align: center;
+  text-decoration: none;
+}
 
-/* ==========================
-   📌 Mobile Responsiveness
-============================= */
+.comic-save-button:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+}
+
+/* ===== Icon buttons (delete, etc.) ===== */
+.comic-modal-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.icon-button:hover {
+  color: #f87171;
+}
+
+.delete-button {
+  color: #f87171;
+}
+
+.delete-button:hover {
+  color: #ef4444;
+}
+
+/* ===== Dropdown sections (legacy, kept for safety) ===== */
+.comic-dropdown-section {
+  margin-top: 15px;
+}
+
+.comic-dropdown-label {
+  font-weight: bold;
+  font-size: 1em;
+  display: block;
+  color: white;
+  margin-bottom: 5px;
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
-    /* Stack Title, Year, Status & Purchase Status */
-    .comic-modal-top-section {
-        flex-direction: row;
-        align-items: flex-start;
-    }
+  .comic-modal-top-section {
+    align-items: flex-start;
+  }
 
-    .comic-status-container {
-        width: 100%;
-        flex-direction: row;
-        
-    }
+  .comic-status-container {
+    flex-direction: row;
+    width: 100%;
+  }
 
-    /* Stack key characters and era */
-    .comic-key-era-container {
-        flex-direction: row;
-        gap: 30px;
-    }
+  .comic-key-era-container {
+    flex-direction: column;
+    gap: 12px;
+  }
 
-    .comic-key-characters,
-    .comic-era-section {
-        width: 100%;
-    }
+  .comic-era-container {
+    flex-direction: row;
+    width: 100%;
+  }
 
-    /* Ensures + button stays with dropdown */
-    .comic-era-container {
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-    }
+  .comic-input-row {
+    flex-wrap: wrap;
+  }
 
-    /* Inputs adjust to mobile */
-    .comic-key-input,
-    .comic-dropdown,
-    .comic-input {
-        width: 100%;
-    }
-
-    /* Adjusts save button size */
-    .comic-save-button {
-        font-size: 0.9em;
-    }
+  .comic-event-toggle {
+    flex-direction: row;
+    align-items: center;
+  }
 }
